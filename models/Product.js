@@ -11,7 +11,7 @@ Product.init(
   {
     // define columns
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
@@ -36,8 +36,8 @@ Product.init(
       references: {
         model: 'category',
         key: 'id',
-      }
-    }
+      },
+    },
   },
   {
     sequelize,
