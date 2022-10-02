@@ -12,10 +12,10 @@ const ProductTag = require('./ProductTag');
 // Saying that the Product table has one association with another table - 
 // Need both set up if need to query both Category and Product table - when populating table - so just better to have both
 // Just able to access Category. and Product. i.e. call for objects on both tables
-Category.hasOne(Product, {
-  foreignKey: 'category_id',
-  onDelete: 'CASCADE',
-});
+// Category.hasOne(Product, {
+//   foreignKey: 'category_id',
+//   onDelete: 'CASCADE',
+// });
 
 Product.belongsTo(Category,  {
   foreignKey: 'category_id'
@@ -23,6 +23,7 @@ Product.belongsTo(Category,  {
 
 
 // Categories have many Products
+// Can have more than one - category can have many products
 
 Category.hasMany(Product, {
   foreignKey: 'category_id',
@@ -31,12 +32,14 @@ Category.hasMany(Product, {
 
 // Products belongToMany Tags (through ProductTag)
 
-Product.belongToMany(ProductTag, {
-  foreignKey: 'category_id',
+Product.belongToMany(Tag, { through: 'tag_id',
+  foreignKey: 'product_id',
 });
 
 // Tags belongToMany Products (through ProductTag)
-
+Tag.belongToMany(Product, {through: 'product_id',
+foreignKey: 'tag_id',
+});
 
 
 // Exporting models
