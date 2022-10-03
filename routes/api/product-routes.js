@@ -40,17 +40,7 @@ router.get("/:id", async (req, res) => {
 
 // create new product
 router.post("/", async (req, res) => {
-  try {
-    const productData = await Product.create({
-      product_name: req.body.product_name,
-      price: req.body.price,
-      stock: req.body.stock,
-      tag_ids: req.body.tag_ids,
-    });
-    res.status(200).json(productData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -126,7 +116,7 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
   try {
-    const tagData = await Category.destroy({
+    const productData = await Product.destroy({
       where: {
         id: req.params.id,
       },
@@ -134,7 +124,7 @@ router.delete("/:id", async (req, res) => {
     if (!tagData) {
       res.status(404).json({ message: 'No tag found with that id!'});
     }
-    res.status(200).json(tagData);
+    res.status(200).json(productData);
 
   } catch (err) {
       res.status(500).json(err);
