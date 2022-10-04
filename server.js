@@ -15,7 +15,7 @@ app.use(routes);
 // run this because have active connection to the database when run sequalize.sync so want this before the server is on
 // Also makes sure that database is same as what's in models etc basically syncs it up
 // It does not change existing tables. So if add new columns - need to manually update it yourself. So if data don't want to lose by dropping it - need to manually update it
-sequelize.sync().then(() => {
+sequelize.sync({force: false }).then(() => {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 })});

@@ -39,7 +39,43 @@ router.get("/:id", async (req, res) => {
 
 
 // create new product
+// router.post("/", async (req, res) => {
+
+//   /* req.body should look like this...
+//     {
+//       product_name: "Basketball",
+//       price: 200.00,
+//       stock: 3,
+//       tagIds: [1, 2, 3, 4]
+//     }
+//   */
+//   Product.create(req.body)
+//     .then((product) => {
+//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+//       console.log(product);
+//       // if (req.body.tagIds.length) {
+//       //   const productTagIdArr = req.body.tagIds.map((tag_id) => {
+//       //     return {
+//       //       product_id: product.id,
+//       //       tag_id,
+//       //     };
+//       //   });
+//       //   return ProductTag.bulkCreate(productTagIdArr);
+//       // }
+//       // if no product tags, just respond
+//       res.status(200).json(product);
+//     })
+//     .then((productTagIds) => res.status(200).json(productTagIds))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
+
+
+
 router.post("/", async (req, res) => {
+  console.log("-------------------------------------->", req.body);
 
   /* req.body should look like this...
     {
@@ -49,19 +85,18 @@ router.post("/", async (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(req.body)
+    Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      console.log(product);
-      // if (req.body.tagIds.length) {
-      //   const productTagIdArr = req.body.tagIds.map((tag_id) => {
-      //     return {
-      //       product_id: product.id,
-      //       tag_id,
-      //     };
-      //   });
-      //   return ProductTag.bulkCreate(productTagIdArr);
-      // }
+      if (req.body.tagIds && req.body.tagIds.length) {
+        const productTagIdArr = req.body.tagIds.map((tag_id) => {
+          return {
+            product_id: product.id,
+            tag_id,
+          };
+        });
+        return ProductTag.bulkCreate(productTagIdArr);
+      }
       // if no product tags, just respond
       res.status(200).json(product);
     })
@@ -72,8 +107,10 @@ router.post("/", async (req, res) => {
     });
 });
 
+
 // update product
 router.put("/:id", (req, res) => {
+  console.log(res);
   // update product data
   Product.update(req.body, {
     where: {
@@ -81,10 +118,14 @@ router.put("/:id", (req, res) => {
     },
   })
     .then((product) => {
+    
+     
       // find all associated tags from ProductTag
+      
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })
     .then((productTags) => {
+      
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
@@ -122,7 +163,7 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    if (!tagData) {
+    if (!productData) {
       res.status(404).json({ message: 'No tag found with that id!'});
     }
     res.status(200).json(productData);
