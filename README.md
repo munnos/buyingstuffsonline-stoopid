@@ -81,4 +81,4 @@ If you have any queries or questions regarding this project, you can contact me 
 
 ## Walkthrough
 
-Link to walkthrough video demonstrating use of the application: https://drive.google.com/file/d/1Ywws7eTPzj3xkHnzFrdq191ImuzNvSu9/view
+Link to walkthrough video demonstrating use of the application: https://www.youtube.com/watch?v=NGIGav1ZXtE
