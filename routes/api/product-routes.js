@@ -1,11 +1,11 @@
+// Creating a router as a module and requiring express and the required models for the below routes.
+
+
 const router = require("express").Router();
 const { Product, Category, Tag, ProductTag } = require("../../models");
 
-// The `/api/products` endpoint
 
-// find all products
-// be sure to include its associated Category and Tag data
-// get all products
+// route to find all products
 router.get("/", async (req, res) => {
   try {
     const productData = await Product.findAll({
@@ -18,9 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 
-// find a single product by its `id`
-// be sure to include its associated Category and Tag data
-// get one product
+// route to find a single product by its `id`
 router.get("/:id", async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
@@ -36,58 +34,11 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-
-// create new product
-// router.post("/", async (req, res) => {
-
-//   /* req.body should look like this...
-//     {
-//       product_name: "Basketball",
-//       price: 200.00,
-//       stock: 3,
-//       tagIds: [1, 2, 3, 4]
-//     }
-//   */
-//   Product.create(req.body)
-//     .then((product) => {
-//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-//       console.log(product);
-//       // if (req.body.tagIds.length) {
-//       //   const productTagIdArr = req.body.tagIds.map((tag_id) => {
-//       //     return {
-//       //       product_id: product.id,
-//       //       tag_id,
-//       //     };
-//       //   });
-//       //   return ProductTag.bulkCreate(productTagIdArr);
-//       // }
-//       // if no product tags, just respond
-//       res.status(200).json(product);
-//     })
-//     .then((productTagIds) => res.status(200).json(productTagIds))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
-
-
-
 router.post("/", async (req, res) => {
-  console.log("-------------------------------------->", req.body);
 
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
     Product.create(req.body)
     .then((product) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+      // if there's product tags, create pairings to bulk create in the ProductTag model
       if (req.body.tagIds && req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
@@ -108,7 +59,7 @@ router.post("/", async (req, res) => {
 });
 
 
-// update product
+// route to update product
 router.put("/:id", (req, res) => {
   console.log(res);
   // update product data

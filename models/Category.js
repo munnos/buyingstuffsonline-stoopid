@@ -1,17 +1,18 @@
-// Model is a class in javascript
-// This is us defining what the data needs to look like
+// import important parts of the sequelize library
 
 const { Model, DataTypes } = require("sequelize");
 
+// import the database connection from config.js
+
 const sequelize = require("../config/connection.js");
 
-// Model is just a table
+// Initialize Category model (table) by extending Sequelize's Model class. Model essentially translates to table. 
 
 class Category extends Model {}
 
 Category.init(
   {
-    // define columns
+    // defining columns for category model(table)
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -31,5 +32,7 @@ Category.init(
     modelName: "category",
   }
 );
+
+// Exporting category model(table)
 
 module.exports = Category;
