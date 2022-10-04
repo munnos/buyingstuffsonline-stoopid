@@ -37,9 +37,9 @@ To install the required packages to run the application, firstly run "npm i" or 
 
 - After following these steps, the user can then utilise an API client like insomnia to interact with the database. The format of the data is JSON. The user can then make queries to access data from the following tables:
 
--- Catergories
--- Products
--- Tags
+      - Catergories
+      - Products
+      - Tags
 
 - The application supports get requests (to retrieve data from the tables), put requests (to update data within the tables) and post requests (to create new entries for the tables) for all of the above.
 
