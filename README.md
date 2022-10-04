@@ -1,5 +1,7 @@
 # buyingstuffsonline-stoopid
 
+![MIT license badge](https://img.shields.io/badge/license-MIT-blue.svg)
+
 
 ## Description
 
