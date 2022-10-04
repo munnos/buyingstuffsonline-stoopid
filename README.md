@@ -45,7 +45,17 @@ To install the required packages to run the application, firstly run "npm i" or 
 
 ## Screenshots
 
+![image](https://user-images.githubusercontent.com/88617634/193846272-19a7e85c-add9-48eb-ac25-fe4031df719b.png)
 
+![image](https://user-images.githubusercontent.com/88617634/193846410-e06b174c-8455-4cbc-9e76-3b7d0fc8cbe5.png)
+
+![image](https://user-images.githubusercontent.com/88617634/193846519-46ae6fff-30e8-4199-9ea3-544abbaaa5d9.png)
+
+![image](https://user-images.githubusercontent.com/88617634/193846700-6180a985-7542-4e33-a08f-e5c1be883de9.png)
+
+![image](https://user-images.githubusercontent.com/88617634/193848755-c54737dd-cf68-4869-8042-7eab4e978c64.png)
+
+![image](https://user-images.githubusercontent.com/88617634/193848826-669b4b7d-87dc-4650-8e79-fc99b0872996.png)
 
 ## License
 
@@ -71,4 +81,4 @@ If you have any queries or questions regarding this project, you can contact me 
 
 ## Walkthrough
 
-Link to walkthrough video demonstrating use of the application: 
+Link to walkthrough video demonstrating use of the application: https://drive.google.com/file/d/1Ywws7eTPzj3xkHnzFrdq191ImuzNvSu9/view
